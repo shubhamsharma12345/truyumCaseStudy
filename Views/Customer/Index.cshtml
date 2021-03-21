@@ -1,0 +1,43 @@
+﻿
+@model IEnumerable<Turuyum.Models.MenuItem>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<table>
+
+    <tr>
+        <th>@Html.Label("Name")</th>
+        <th>@Html.Label("Price")</th>
+        <th>@Html.Label("Active")</th>
+        <th>@Html.Label("Date of Launch")</th>
+        <th>@Html.Label("Name")</th>
+        <th>@Html.Label("Free Delivery")</th>
+        <th>@Html.Label("Action")</th>
+    </tr>
+    @foreach (var a in Model)
+    {
+<tr>
+    <td>@a.Name</td>
+    <td>@a.price</td>
+    <td>@a.Active</td>
+    <td>@a.DateOfLaunch</td>
+    @{ foreach (var x in ViewBag.Clist)
+        {
+
+            if (a.CategoryId == x.CategoryId)
+            {
+<td>
+    <p>@x.Name</p>
+</td> }
+                } }
+
+    <td>@a.freedelivery</td>
+
+    <td> @Html.ActionLink("Add to Cart", "Cart", new { id = a.MenuItemId })</td>
+</tr>}
